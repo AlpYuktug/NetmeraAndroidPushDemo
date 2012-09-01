@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NetmeraAndroidPushDemo</string>
+    <string name="main_text">Hello from Netmera</string>
+    <string name="push_title">Hello from Netmera</string>
+</resources>
