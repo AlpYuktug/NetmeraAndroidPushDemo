@@ -1,17 +1,14 @@
 package com.netmera.androidpushdemo;
 
-import java.util.Map;
 
 import com.netmera.androidpushdemo.R;
-import com.netmera.mobile.BasePush.PushChannel;
 import com.netmera.mobile.NetmeraClient;
+import com.netmera.mobile.NetmeraDeviceDetail;
 import com.netmera.mobile.NetmeraException;
 import com.netmera.mobile.NetmeraPush;
-import com.netmera.mobile.NetmeraPushDetail;
 import com.netmera.mobile.NetmeraPushService;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.Html;
@@ -46,7 +43,6 @@ public class MainActivity extends Activity {
 
 
 
-		// Calling init() method with api key to be able to use netmera services.
 		NetmeraClient.init(this, GlobalVariables.apiKey);
 
 		// Unregister button
@@ -57,7 +53,8 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				if (registered) {
 					// If registered to the service, unregister from it
-					NetmeraPushService.unregister(getApplicationContext(), registrationId);
+					NetmeraDeviceDetail deviceDetail = new NetmeraDeviceDetail(getApplicationContext(), GlobalVariables.projectId, PushActivity.class);
+					NetmeraPushService.unregister(deviceDetail);
 				} else {
 					// If not show an error toast
 					Toast.makeText(getBaseContext(), "Not registered to push!", Toast.LENGTH_SHORT).show();
@@ -78,14 +75,16 @@ public class MainActivity extends Activity {
 					/*
 					 * Register method has three parameters. 
 					 * applicationContext : current application context.
-					 * activityClass : This is the activity launched when user clickes on the notification.
+					 * activityClass : This is the activity launched when user clickes on the notification, this class extends NetmeraActivity.
 					 * projectID : This is the ID that you get from the Google on the step-1.
 					 */
 					try {
-						NetmeraPushService.register(getApplicationContext(), PushActivity.class, GlobalVariables.projectId);
+						NetmeraDeviceDetail deviceDetail = new NetmeraDeviceDetail(getApplicationContext(), GlobalVariables.projectId, PushActivity.class);
+						NetmeraPushService.register(deviceDetail);
 					} catch (NetmeraException e) {
 						e.printStackTrace();
 					}
+					
 				}
 			}
 		});
@@ -124,12 +123,7 @@ public class MainActivity extends Activity {
 							// to registered devices in your app.
 							push.setMessage("Hello, World!");
 							// Send the notification and get the result as a Map
-							Map<PushChannel, NetmeraPushDetail> result = push.sendNotification();
-							
-							// Get the push detail of channel and then get the status, error, message etc...
-							NetmeraPushDetail androidDetail = result.get(PushChannel.android);
-							String androidStatus = androidDetail.getStatus();
-							Toast.makeText(MainActivity.this, "android:"+androidStatus, Toast.LENGTH_SHORT).show();
+							push.sendNotification();
 
 						} catch (NetmeraException e) {
 							e.printStackTrace();

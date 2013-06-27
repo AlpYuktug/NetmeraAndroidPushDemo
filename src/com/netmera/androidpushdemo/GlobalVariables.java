@@ -1,6 +1,6 @@
 package com.netmera.androidpushdemo;
 
 public class GlobalVariables {
-	public static String apiKey = "your api key here";
-	public static String projectId = "your project id here";
+	public static String apiKey = "WVhCd1ZYSnNQV2gwZEhBbE0wRWxNa1lsTWtaMFlXY3VibVYwYldWeVlTNWpiMjBtYm0xVGFYUmxWWEpzUFhSaFp5NXVaWFJ0WlhKaExtTnZiU1p0YjJSMWJHVkpaRDB3Sm1Gd2NFbGtQWFJoWnladWJWUmxiWEJzWVhSbFBXMXZZbWwwWlcxd2JHRjBaU1p2ZDI1bGNrbGtQV1Z5WkdWdGJHRnNKbVJ2YldGcGJqMXRiMkpwYldWeVlTWnViVk5wZEdVOWRHRm5KbTkzYm1WeVVtOXNaVlI1Y0dVOU1pWjJhV1YzWlhKU2IyeGxWSGx3WlQweUpuWnBaWGRsY2tsa1BXVnlaR1Z0YkdGc0pn";
+	public static String projectId = "9948361090";
 }

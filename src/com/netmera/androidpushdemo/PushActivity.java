@@ -1,11 +1,11 @@
 package com.netmera.androidpushdemo;
 
 import com.netmera.androidpushdemo.R;
+import com.netmera.mobile.NetmeraActivity;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public class PushActivity extends Activity {
+public class PushActivity extends NetmeraActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
