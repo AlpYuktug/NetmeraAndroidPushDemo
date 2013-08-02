@@ -1,23 +1,22 @@
 package com.netmera.androidpushdemo;
 
 
-import com.netmera.androidpushdemo.R;
-import com.netmera.mobile.NetmeraClient;
-import com.netmera.mobile.NetmeraDeviceDetail;
-import com.netmera.mobile.NetmeraException;
-import com.netmera.mobile.NetmeraPush;
-import com.netmera.mobile.NetmeraPushService;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.Html;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View.OnClickListener;
+
+import com.netmera.mobile.Netmera;
+import com.netmera.mobile.NetmeraDeviceDetail;
+import com.netmera.mobile.NetmeraException;
+import com.netmera.mobile.NetmeraPush;
+import com.netmera.mobile.NetmeraPushService;
 
 public class MainActivity extends Activity {
 
@@ -43,7 +42,7 @@ public class MainActivity extends Activity {
 
 
 
-		NetmeraClient.init(this, GlobalVariables.apiKey);
+		Netmera.init(this, GlobalVariables.apiKey);
 
 		// Unregister button
 		Button unregButton = new Button(this);
@@ -122,7 +121,7 @@ public class MainActivity extends Activity {
 							// Set the message you want to send 
 							// to registered devices in your app.
 							push.setMessage("Hello, World!");
-							// Send the notification and get the result as a Map
+							// Send the notification
 							push.sendNotification();
 
 						} catch (NetmeraException e) {
