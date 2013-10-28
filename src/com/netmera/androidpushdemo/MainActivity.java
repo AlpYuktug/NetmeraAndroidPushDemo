@@ -3,7 +3,6 @@ package com.netmera.androidpushdemo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.netmera.mobile.Netmera;
+import com.netmera.mobile.NetmeraCallback;
 import com.netmera.mobile.NetmeraDeviceDetail;
 import com.netmera.mobile.NetmeraException;
-import com.netmera.mobile.NetmeraPush;
+import com.netmera.mobile.NetmeraPushObject;
+import com.netmera.mobile.NetmeraPushSender;
 import com.netmera.mobile.NetmeraPushService;
 
 public class MainActivity extends Activity {
@@ -106,31 +107,23 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				NetmeraPushObject push = new NetmeraPushObject();
+
+				push.setMessage("Iniesta scored second goal in tonight's game!");
+				push.setTitle("Live Score");
+				NetmeraPushSender.setSendToAndroid(true);
+				NetmeraPushSender.setSendToIOS(true);
 				
-				Thread thread = new Thread(new Runnable() {
-					
+				NetmeraPushSender.sendPushNotificationInBackground(push, new NetmeraCallback<Void>() {
 					@Override
-					public void run() {
-						Looper.prepare();
-						NetmeraPush push = new NetmeraPush();
-
-						// Send to android devices
-						push.setSendToAndroid(true);
-						push.setSendToIos(true);
-						try {
-							// Set the message you want to send 
-							// to registered devices in your app.
-							push.setMessage("Hello, World!");
-							// Send the notification
-							push.sendNotification();
-
-						} catch (NetmeraException e) {
-							e.printStackTrace();
-						}
-						
+					public void onSuccess(Void result) {
+					}
+					@Override
+					public void onFail(NetmeraException exception) {
+						exception.printStackTrace();
 					}
 				});
-				thread.start();
+				
 			}
 		});
 		pushLayout.addView(sendPushButton);
