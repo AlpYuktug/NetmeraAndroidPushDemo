@@ -1,6 +1,9 @@
 #Netmera Android Push Service Demo
 
-This is a sample project that demonstrates the usage of Netmera Android push service. For more information, please visit our <a href='http://www.netmera.com/resources/android-guide/'>Android Guide</a> page.
+This sample project is outdated. You can find fresh documents and codes by using the links below
 
-##Notes
-  * In order to make the application work, you have to use your own Android Cloud Messaging project id, and Netmera API key, you should also save Google API key to the settings page of your application in Netmera website.
+General Docs: https://www.netmera.com/resources/
+
+SDK Download: http://www.netmera.com/resources/downloads/
+
+Example project: You should first log in to download example project from https://cp.netmera.com/nm/admin/tutorial
